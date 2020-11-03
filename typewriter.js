@@ -1,16 +1,11 @@
 const sentence = "hello there from lighthouse labs";
-console.log("");
 
-const timeOutLoop = function() {
-  console.log("\n");
-};
-
-for (let i = 0; i <= sentence.length; i++) {
-  setTimeout(() => {
-    process.stdout.write(sentence[i]);
-    if (i >= sentence.length) {
-      timeOutLoop();
-    }
-  },i * 50);
-}
-
+let numTimes = -1;
+const interval = setInterval(() => {
+  numTimes++;
+  process.stdout.write(sentence[numTimes]);
+  if (numTimes === sentence.length - 1) {
+    process.stdout.write("\n");
+    return clearInterval(interval);
+  }
+}, 50);
